@@ -29,9 +29,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -56,9 +59,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="86" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1624180735798" />
-    <state width="498" height="445" key="SwitcherDM" timestamp="1624184660519">
+    <state width="498" height="445" key="SwitcherDM" timestamp="1624184775562">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="498" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1624184660519" />
+    <state width="498" height="445" key="SwitcherDM/0.0.1440.900@0.0.1440.900" timestamp="1624184775562" />
   </component>
 </project>
