@@ -66,6 +66,7 @@
     "https-proxy-agent": "^5.0.0",
     "ignore": "^5.1.8",
     "inquirer": "^6.5.2",
+    "progress": "^2.0.3",
     "tar": "^6.1.2",
     "tslib": "^1.14.1"
   }
