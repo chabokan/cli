@@ -19,7 +19,7 @@ export default class Login extends Command {
   async run() {
     const cli = this;
     const {args, flags} = this.parse(Login);
-    const body = {username: flags.username, password: flags.password};
+    const body:any  = {username: flags.username, password: flags.password};
     const config_json = read_config_file();
     if (!flags.username) {
       let {username} = await inquirer.prompt({
@@ -58,10 +58,11 @@ export default class Login extends Command {
             if (!isObject(config_json.users)) {
               config_json.users = {};
             }
+            // @ts-ignore
             config_json.users[body.username] = {
               "token": response.data.token
             };
-            config_json.default_user = body.username;
+            config_json["default_user"] = <string>body.username;
             fs.writeFileSync(GLOBAL_CONF_PATH, JSON.stringify(config_json));
             cli.log(`${chalk.green('[Success]')}`)
           } else {

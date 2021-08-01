@@ -17,7 +17,7 @@ export default class ChangeUser extends Command {
     const cli = this;
     const {args, flags} = this.parse(ChangeUser);
     const config_json = read_config_file();
-    let default_user = flags.user;
+    let default_user = <string>flags.user;
 
     if (isEmptyObject(config_json.users)) {
       cli.log(`${chalk.red('[Error]')} first you should login!`);
@@ -35,7 +35,7 @@ export default class ChangeUser extends Command {
     }
 
     if (default_user in config_json.users) {
-      config_json.default_user = default_user;
+      config_json["default_user"] = <string>default_user;
       fs.writeFileSync(GLOBAL_CONF_PATH, JSON.stringify(config_json));
       cli.log(`${chalk.green('[Success]')} user changed successfully.`)
     } else {
