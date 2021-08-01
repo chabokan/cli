@@ -19,7 +19,7 @@ $ npm install -g @chabokan.net/cli
 $ chabok COMMAND
 running command...
 $ chabok (-v|--version|version)
-@chabokan.net/cli/0.1.0 darwin-x64 node-v12.16.1
+@chabokan.net/cli/0.2.0 darwin-x64 node-v12.16.1
 $ chabok --help [COMMAND]
 USAGE
   $ chabok COMMAND
@@ -28,12 +28,28 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`chabok change-user`](#chabok-change-user)
 * [`chabok deploy [FILE]`](#chabok-deploy-file)
 * [`chabok help [COMMAND]`](#chabok-help-command)
-* [`chabok login [FILE]`](#chabok-login-file)
+* [`chabok login`](#chabok-login)
 * [`chabok restart [FILE]`](#chabok-restart-file)
 * [`chabok start [FILE]`](#chabok-start-file)
 * [`chabok stop [FILE]`](#chabok-stop-file)
+
+## `chabok change-user`
+
+describe the command here
+
+```
+USAGE
+  $ chabok change-user
+
+OPTIONS
+  -h, --help       show CLI help
+  -u, --user=user  default user
+```
+
+_See code: [src/commands/change-user.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/change-user.ts)_
 
 ## `chabok deploy [FILE]`
 
@@ -49,7 +65,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.1.0/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/deploy.ts)_
 
 ## `chabok help [COMMAND]`
 
@@ -68,21 +84,22 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `chabok login [FILE]`
+## `chabok login`
 
 describe the command here
 
 ```
 USAGE
-  $ chabok login [FILE]
+  $ chabok login
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help               show CLI help
+  -p, --password=password  your password
+  -t, --token=token        login with api token
+  -u, --username=username  your username
 ```
 
-_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.1.0/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/login.ts)_
 
 ## `chabok restart [FILE]`
 
@@ -98,7 +115,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.1.0/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/restart.ts)_
 
 ## `chabok start [FILE]`
 
@@ -114,7 +131,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/start.ts](https://github.com/chabokan/cli/blob/v0.1.0/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/start.ts)_
 
 ## `chabok stop [FILE]`
 
@@ -130,5 +147,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/stop.ts](https://github.com/chabokan/cli/blob/v0.1.0/src/commands/stop.ts)_
+_See code: [src/commands/stop.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/stop.ts)_
 <!-- commandsstop -->
