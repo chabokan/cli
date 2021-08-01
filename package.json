@@ -1,7 +1,7 @@
 {
   "name": "@chabokan.net/cli",
   "description": "Chabokan Cli for PaaS Services",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Mohammad Abdi",
   "bin": {
     "chabok": "./bin/run"
@@ -11,8 +11,10 @@
     "@oclif/dev-cli": "^1.26.0",
     "@oclif/test": "^1.2.8",
     "@types/chai": "^4.2.19",
+    "@types/fs-extra": "^5.0.5",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.17.60",
+    "@types/tar": "^4.0.5",
     "chai": "^4.3.4",
     "globby": "^10.0.2",
     "mocha": "^5.2.0",
@@ -59,8 +61,12 @@
     "axios": "^0.21.1",
     "chalk": "^2.4.2",
     "cli-ux": "^5.6.3",
+    "fs-extra": "^7.0.1",
+    "got": "^11.8.2",
     "https-proxy-agent": "^5.0.0",
+    "ignore": "^5.1.8",
     "inquirer": "^6.5.2",
+    "tar": "^6.1.2",
     "tslib": "^1.14.1"
   }
 }

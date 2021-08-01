@@ -1,6 +1,8 @@
 import * as fs from "fs";
 import {GLOBAL_CONF_PATH} from "./constants";
 import axios from "axios";
+import {dirname, join, relative} from "path";
+import {Ignore} from "ignore";
 
 export function isObject(obj: any) {
   return obj != null && obj.constructor.name === "Object"
@@ -49,4 +51,48 @@ export async function get_all_services(filter = {}, axiosConfig: any) {
   }
 
   return all_services
+}
+
+
+export function trimLines(lines: string[]): string[] {
+  return lines.reduce((prev, line) => {
+    if (!line.trim() || line.startsWith('#')) {
+      return prev
+    }
+    return [...prev, line]
+  }, [] as string[])
+}
+
+export const loadIgnoreFile = (ignoreInstance: Ignore, ignoreFilePath: string, projectPath: string) => {
+  const patterns: string[] = trimLines(
+    fs.readFileSync(ignoreFilePath).toString().split('\n')
+  )
+
+  const relativeToProjectPath = patterns.map((pattern: string) => {
+    const dir = dirname(ignoreFilePath)
+    if (pattern.startsWith('!')) {
+      const absolutePrefix = pattern.substr(1).startsWith('/') ? '/' : ''
+      return '!' + absolutePrefix + relative(projectPath, join(dir, pattern.substr(1)))
+    }
+    const absolutePrefix = pattern.startsWith('/') ? '/' : ''
+    return absolutePrefix + relative(projectPath, join(dir, pattern))
+  })
+
+  const linuxify = relativeToProjectPath.map(p => p.replace(/\\/g, '/'))
+
+  ignoreInstance.add(linuxify)
+}
+
+export function addIgnorePatterns(ignoreInstance: Ignore, projectPath: string, dir: string) {
+  const liaraignorePath = join(projectPath, dir, '.chabokignore')
+  const dockerignorePath = join(projectPath, dir, '.dockerignore')
+  const gitignorePath = join(projectPath, dir, '.gitignore')
+
+  if (fs.existsSync(liaraignorePath)) {
+    loadIgnoreFile(ignoreInstance, liaraignorePath, projectPath)
+  } else if (fs.existsSync(dockerignorePath)) {
+    loadIgnoreFile(ignoreInstance, dockerignorePath, projectPath)
+  } else if (fs.existsSync(gitignorePath)) {
+    loadIgnoreFile(ignoreInstance, gitignorePath, projectPath)
+  }
 }

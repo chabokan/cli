@@ -4,6 +4,7 @@ import {BASE_API_URL, GLOBAL_CONF_PATH} from "./constants";
 import {get_all_services, isEmptyObject, read_config_file} from "./helper";
 import HttpsProxyAgent from "https-proxy-agent/dist/agent";
 import * as fs from "fs";
+import got, {Options} from 'got'
 
 export default abstract class extends Command {
   static flags = {
@@ -13,6 +14,7 @@ export default abstract class extends Command {
   axiosConfig = {
     ...axios.defaults
   };
+  got = got.extend();
 
   read_config() {
     return read_config_file();
@@ -27,24 +29,33 @@ export default abstract class extends Command {
   }
 
   init_run(): void {
+    const gotConfig: Options = {};
     this.axiosConfig.baseURL = BASE_API_URL;
+    gotConfig.prefixUrl = this.axiosConfig.baseURL;
     const proxy = process.env.http_proxy || process.env.https_proxy;
     if (proxy) {
       this.log(`Using proxy server ${proxy}`);
       // @ts-ignore
-      this.axiosConfig.httpsAgent = new HttpsProxyAgent(proxy);
+      const agent = new HttpsProxyAgent(proxy);
+      this.axiosConfig.httpsAgent = agent;
       this.axiosConfig.proxy = false;
+      gotConfig.agent = {https: agent}
+
     }
     const config_json = read_config_file();
+    this.got = got.extend(gotConfig);
     if (isEmptyObject(config_json) || isEmptyObject(config_json.users)) {
       return;
     }
 
     // @ts-ignore
     const token = config_json.users[config_json.default_user]["token"] || null;
+
     if (token) {
       this.axiosConfig.headers.Authorization = `Token ${token}`;
-    }
+      gotConfig.headers = {Authorization: `Token ${token}`};
 
+    }
+    this.got = got.extend(gotConfig)
   }
 }
