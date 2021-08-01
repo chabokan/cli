@@ -4,7 +4,6 @@ import {BASE_API_URL, GLOBAL_CONF_PATH} from "./constants";
 import {get_all_services, isEmptyObject, read_config_file} from "./helper";
 import HttpsProxyAgent from "https-proxy-agent/dist/agent";
 import * as fs from "fs";
-import chalk from "chalk";
 
 export default abstract class extends Command {
   static flags = {
