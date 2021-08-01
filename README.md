@@ -29,10 +29,11 @@ USAGE
 # Commands
 <!-- commands -->
 * [`chabok change-user`](#chabok-change-user)
+* [`chabok config-clear`](#chabok-config-clear)
 * [`chabok deploy [FILE]`](#chabok-deploy-file)
 * [`chabok help [COMMAND]`](#chabok-help-command)
 * [`chabok login`](#chabok-login)
-* [`chabok restart [FILE]`](#chabok-restart-file)
+* [`chabok restart`](#chabok-restart)
 * [`chabok start [FILE]`](#chabok-start-file)
 * [`chabok stop [FILE]`](#chabok-stop-file)
 
@@ -50,6 +51,20 @@ OPTIONS
 ```
 
 _See code: [src/commands/change-user.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/change-user.ts)_
+
+## `chabok config-clear`
+
+describe the command here
+
+```
+USAGE
+  $ chabok config-clear
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/config-clear.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/config-clear.ts)_
 
 ## `chabok deploy [FILE]`
 
@@ -101,18 +116,17 @@ OPTIONS
 
 _See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/login.ts)_
 
-## `chabok restart [FILE]`
+## `chabok restart`
 
 describe the command here
 
 ```
 USAGE
-  $ chabok restart [FILE]
+  $ chabok restart
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help             show CLI help
+  -s, --service=service  service name
 ```
 
 _See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/restart.ts)_

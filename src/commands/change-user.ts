@@ -1,5 +1,5 @@
 import {Command, flags} from '@oclif/command'
-import {isEmptyObject, isObject, read_config_file} from "../helper";
+import {isEmptyObject, read_config_file} from "../helper";
 import * as inquirer from 'inquirer'
 import chalk from "chalk";
 import * as fs from "fs";
