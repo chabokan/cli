@@ -21,37 +21,35 @@ export default class Login extends Command {
     this.init_run();
     const config_json = this.read_config();
     const body: any = {username: flags.username, password: flags.password};
-
-    if (!flags.username) {
-      let {username} = await inquirer.prompt({
-        type: 'input',
-        message: 'Enter your username:',
-        name: 'username',
-        validate(input) {
-          if (input.length === 0) {
-            return false
-          }
-          return true
-        }
-      });
-      body.username = username
-    }
-
-    if (!flags.password) {
-      let {password} = await inquirer.prompt({
-        type: 'password',
-        name: 'password',
-        message: 'Enter your password:',
-        validate(input) {
-          if (input.length === 0) {
-            return false
-          }
-          return true
-        }
-      });
-      body.password = password
-    }
     if (!flags.token) {
+      if (!flags.username) {
+        let {username} = await inquirer.prompt({
+          type: 'input',
+          message: 'Enter your username:',
+          name: 'username',
+          validate(input) {
+            if (input.length === 0) {
+              return false
+            }
+            return true
+          }
+        });
+        body.username = username
+      }
+      if (!flags.password) {
+        let {password} = await inquirer.prompt({
+          type: 'password',
+          name: 'password',
+          message: 'Enter your password:',
+          validate(input) {
+            if (input.length === 0) {
+              return false
+            }
+            return true
+          }
+        });
+        body.password = password
+      }
       const {data} = await axios.post("accounts/login/", body, this.axiosConfig);
       if (data.success) {
         if (!isObject(config_json.users)) {
@@ -66,6 +64,24 @@ export default class Login extends Command {
         cli.log(`${chalk.green('[Success]')} you are logged in successfully.`)
       } else {
         cli.log(`${chalk.red('[Error]')} your username or password is wrong!`)
+      }
+    } else {
+      try {
+        this.axiosConfig.headers.Authorization = `Token ${flags.token}`;
+        const {data} = await axios.get("accounts/info/", this.axiosConfig);
+
+        if (!isObject(config_json.users)) {
+          config_json.users = {};
+        }
+        // @ts-ignore
+        config_json.users[data.user.email] = {
+          "token": flags.token
+        };
+        config_json["default_user"] = <string>data.user.email;
+        this.write_config(config_json);
+        cli.log(`${chalk.green('[Success]')} you are logged in successfully.`)
+      } catch (e) {
+        cli.log(`${chalk.red('[Error]')} your token is wrong!`)
       }
     }
 

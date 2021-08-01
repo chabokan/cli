@@ -19,7 +19,7 @@ $ npm install -g @chabokan.net/cli
 $ chabok COMMAND
 running command...
 $ chabok (-v|--version|version)
-@chabokan.net/cli/0.2.0 darwin-x64 node-v12.16.1
+@chabokan.net/cli/0.2.1 darwin-x64 node-v12.16.1
 $ chabok --help [COMMAND]
 USAGE
   $ chabok COMMAND
@@ -50,7 +50,7 @@ OPTIONS
   -u, --user=user  default user
 ```
 
-_See code: [src/commands/change-user.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/change-user.ts)_
+_See code: [src/commands/change-user.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/change-user.ts)_
 
 ## `chabok config-clear`
 
@@ -64,7 +64,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/config-clear.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/config-clear.ts)_
+_See code: [src/commands/config-clear.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/config-clear.ts)_
 
 ## `chabok deploy [FILE]`
 
@@ -80,7 +80,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/deploy.ts)_
 
 ## `chabok help [COMMAND]`
 
@@ -114,7 +114,7 @@ OPTIONS
   -u, --username=username  your username
 ```
 
-_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/login.ts)_
 
 ## `chabok restart`
 
@@ -129,7 +129,7 @@ OPTIONS
   -s, --service=service  service name
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/restart.ts)_
 
 ## `chabok start [FILE]`
 
@@ -145,7 +145,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/start.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/start.ts)_
+_See code: [src/commands/start.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/start.ts)_
 
 ## `chabok stop [FILE]`
 
@@ -161,5 +161,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/stop.ts](https://github.com/chabokan/cli/blob/v0.2.0/src/commands/stop.ts)_
+_See code: [src/commands/stop.ts](https://github.com/chabokan/cli/blob/v0.2.1/src/commands/stop.ts)_
 <!-- commandsstop -->
