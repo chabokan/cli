@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 export default class Logs extends Command {
-  static description = 'with this command, you can read latest logs from service.';
+  static description = 'read latest logs from service';
 
   static flags = {
     ...Command.flags,
@@ -41,17 +41,22 @@ export default class Logs extends Command {
         return;
       }
     }
+    await this.send_request(cli, selected_service)
+  }
 
+  async send_request(cli: any, selected_service: any) {
     try {
-      const {data} = await axios.get("services/" + selected_service + "/logs/", this.axiosConfig);
-      if (data.success) {
-        cli.log(data.logs)
+      if (selected_service) {
+        const {data} = await axios.get("services/" + selected_service + "/logs/", this.axiosConfig);
+        if (data.success) {
+          cli.log(data.logs)
+        }
       }
     } catch (e) {
-      if (e.response.status == 404){
+      if (e.response.status == 404) {
         cli.log(chalk.blue("Selected Service Not Founded."))
 
-      }else {
+      } else {
         console.log(e.data)
       }
     }

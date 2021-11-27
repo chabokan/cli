@@ -6,7 +6,7 @@ import {isEmptyObject} from "../helper";
 import Command from "../base"
 
 export default class Restart extends Command {
-  static description = 'describe the command here';
+  static description = 'restart a service';
 
   static flags = {
     ...Command.flags,
@@ -26,7 +26,7 @@ export default class Restart extends Command {
     }
 
     if (!flags.service) {
-      let all_services: any = await this.get_services();
+      let all_services: any = await this.get_services({'not_status': 'pending'});
       if (all_services) {
         let {service} = await inquirer.prompt({
           type: 'list',
@@ -37,13 +37,23 @@ export default class Restart extends Command {
         selected_service = service
       }
     }
+    await this.send_request(cli, selected_service)
+  }
 
-    if (selected_service) {
-      const {data} = await axios.get("services/" + selected_service + "/restart/", this.axiosConfig);
-      if (data.success) {
-        cli.log(`${chalk.green('[Success]')} service restarted successfully.`)
+  async send_request(cli: any, selected_service: any) {
+    try {
+      if (selected_service) {
+        const {data} = await axios.get("services/" + selected_service + "/restart/", this.axiosConfig);
+        if (data.success) {
+          cli.log(`${chalk.green('[Success]')} service restarted successfully.`)
+        }
+      }
+    } catch (e) {
+      if (e.response.status == 404) {
+        cli.log(chalk.blue("Selected Service Not Founded."))
+      } else {
+        console.log(e.data)
       }
     }
-
   }
 }

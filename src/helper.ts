@@ -43,7 +43,7 @@ export async function get_all_services(filter = {}, axiosConfig: any) {
     const {data} = await axios.get("services/" + url_filter, axiosConfig);
     data.services.forEach(function (item: object) {
       // @ts-ignore
-      all_services.push(item.main_name)
+      all_services.push({"value": item.main_name, "name": `${item.main_name} (${item.platform.name})`})
     });
 
   } catch (e) {

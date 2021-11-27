@@ -1,7 +1,7 @@
 {
   "name": "@chabokan.net/cli",
   "description": "Chabokan Cli for PaaS Services",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "author": "Mohammad Abdi",
   "bin": {
     "chabok": "./bin/run"
@@ -34,7 +34,10 @@
   ],
   "homepage": "https://github.com/chabokan/cli",
   "keywords": [
-    "oclif"
+    "chabokan",
+    "paas",
+    "hosting",
+    "cloud"
   ],
   "license": "MIT",
   "main": "lib/index.js",

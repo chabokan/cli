@@ -19,7 +19,7 @@ $ npm install -g @chabokan.net/cli
 $ chabok COMMAND
 running command...
 $ chabok (-v|--version|version)
-@chabokan.net/cli/0.5.0 darwin-x64 node-v12.16.1
+@chabokan.net/cli/0.7.0 darwin-x64 node-v14.17.5
 $ chabok --help [COMMAND]
 USAGE
   $ chabok COMMAND
@@ -34,13 +34,14 @@ USAGE
 * [`chabok help [COMMAND]`](#chabok-help-command)
 * [`chabok login`](#chabok-login)
 * [`chabok logs`](#chabok-logs)
+* [`chabok resize`](#chabok-resize)
 * [`chabok restart`](#chabok-restart)
-* [`chabok start [FILE]`](#chabok-start-file)
-* [`chabok stop [FILE]`](#chabok-stop-file)
+* [`chabok start`](#chabok-start)
+* [`chabok stop`](#chabok-stop)
 
 ## `chabok change-user`
 
-this command help you to switch your default user between logged in users.
+switch your default user between logged in users
 
 ```
 USAGE
@@ -51,11 +52,11 @@ OPTIONS
   -u, --user=user  default user
 ```
 
-_See code: [src/commands/change-user.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/change-user.ts)_
+_See code: [src/commands/change-user.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/change-user.ts)_
 
 ## `chabok config-clear`
 
-this command clear config file, data such as auth will be removed.
+clear config file, data such as auth will be removed.
 
 ```
 USAGE
@@ -65,7 +66,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/config-clear.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/config-clear.ts)_
+_See code: [src/commands/config-clear.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/config-clear.ts)_
 
 ## `chabok deploy`
 
@@ -81,7 +82,7 @@ OPTIONS
   -s, --service=service  service name
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/deploy.ts)_
 
 ## `chabok help [COMMAND]`
 
@@ -102,7 +103,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2
 
 ## `chabok login`
 
-this is the first command you should use, with this you can login to chabokan.net
+login to hub.chabokan.net account
 
 ```
 USAGE
@@ -115,11 +116,11 @@ OPTIONS
   -u, --username=username  your username
 ```
 
-_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/login.ts)_
 
 ## `chabok logs`
 
-with this command, you can read latest logs from service.
+read latest logs from service
 
 ```
 USAGE
@@ -130,11 +131,29 @@ OPTIONS
   -s, --service=service  service name
 ```
 
-_See code: [src/commands/logs.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/logs.ts)_
+_See code: [src/commands/logs.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/logs.ts)_
+
+## `chabok resize`
+
+resize a service
+
+```
+USAGE
+  $ chabok resize
+
+OPTIONS
+  -c, --cpu=cpu          CPU
+  -d, --disk=disk        DISK
+  -h, --help             show CLI help
+  -r, --ram=ram          RAM
+  -s, --service=service  service name
+```
+
+_See code: [src/commands/resize.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/resize.ts)_
 
 ## `chabok restart`
 
-describe the command here
+restart a service
 
 ```
 USAGE
@@ -145,37 +164,35 @@ OPTIONS
   -s, --service=service  service name
 ```
 
-_See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/restart.ts)_
+_See code: [src/commands/restart.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/restart.ts)_
 
-## `chabok start [FILE]`
+## `chabok start`
 
-describe the command here
-
-```
-USAGE
-  $ chabok start [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-```
-
-_See code: [src/commands/start.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/start.ts)_
-
-## `chabok stop [FILE]`
-
-describe the command here
+start a service
 
 ```
 USAGE
-  $ chabok stop [FILE]
+  $ chabok start
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help             show CLI help
+  -s, --service=service  service name
 ```
 
-_See code: [src/commands/stop.ts](https://github.com/chabokan/cli/blob/v0.5.0/src/commands/stop.ts)_
+_See code: [src/commands/start.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/start.ts)_
+
+## `chabok stop`
+
+stop a service
+
+```
+USAGE
+  $ chabok stop
+
+OPTIONS
+  -h, --help             show CLI help
+  -s, --service=service  service name
+```
+
+_See code: [src/commands/stop.ts](https://github.com/chabokan/cli/blob/v0.7.0/src/commands/stop.ts)_
 <!-- commandsstop -->

@@ -3,7 +3,7 @@ import chalk from "chalk";
 import Command from "../base"
 
 export default class ConfigClear extends Command {
-  static description = 'this command clear config file, data such as auth will be removed.';
+  static description = 'clear config file, data such as auth will be removed.';
 
   static flags = {
     ...Command.flags,

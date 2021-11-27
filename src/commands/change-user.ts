@@ -6,7 +6,7 @@ import * as fs from "fs";
 import {GLOBAL_CONF_PATH} from "../constants";
 
 export default class ChangeUser extends Command {
-  static description = 'this command help you to switch your default user between logged in users.';
+  static description = 'switch your default user between logged in users';
 
   static flags = {
     help: flags.help({char: 'h'}),

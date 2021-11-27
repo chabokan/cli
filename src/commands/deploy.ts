@@ -13,7 +13,7 @@ import ProgressBar from 'progress'
 import FormData from 'form-data'
 
 
-const MAX_SOURCE_SIZE = 500 * 1024 * 1024; // 500 MB
+const MAX_SOURCE_SIZE = 200 * 1024 * 1024; // 200 MB
 
 export default class Deploy extends Command {
   static description = 'this command help you build and deploy your service to chabokan in easy way.';
@@ -59,7 +59,6 @@ export default class Deploy extends Command {
     if (upload_response.success) {
       cli.log(chalk.green(upload_response.message));
     } else {
-      console.clear()
       cli.log(chalk.red("[Error] " + upload_response.message));
     }
   }
@@ -137,7 +136,6 @@ export default class Deploy extends Command {
         .on('uploadProgress', progress => {
           bar.tick(progress.transferred - bar.curr)
         }).json<{ success: string }>();
-      // this.spinner.succeed('Upload finished.')
       if (response.success) {
         upload_response.success = true;
         upload_response.message = "Deployment finished successfully."
@@ -145,7 +143,6 @@ export default class Deploy extends Command {
       return upload_response
 
     } catch (error) {
-      // this.spinner.fail('Upload failed.')
       return upload_response
     } finally {
       // cleanup
