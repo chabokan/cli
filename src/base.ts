@@ -2,10 +2,11 @@ import Command, {flags} from '@oclif/command'
 import axios from "axios"
 import {BASE_API_URL, GLOBAL_CONF_PATH} from "./constants";
 import {get_all_services, isEmptyObject, read_config_file} from "./helper";
-import { getProxyHttpAgent } from 'proxy-http-agent';
+import {getProxyHttpAgent} from 'proxy-http-agent';
 
 import * as fs from "fs";
 import got, {Options} from 'got'
+import * as https from "https";
 
 export default abstract class extends Command {
   static flags = {
@@ -30,7 +31,12 @@ export default abstract class extends Command {
   }
 
   init_run(): void {
-    const gotConfig: Options = {};
+    const main_agent = new https.Agent({
+      rejectUnauthorized: false
+    });
+    // @ts-ignore
+    const gotConfig: Options = {https: main_agent};
+    this.axiosConfig.httpsAgent = main_agent;
     this.axiosConfig.baseURL = BASE_API_URL;
     gotConfig.prefixUrl = this.axiosConfig.baseURL;
     const proxy = process.env.http_proxy || process.env.https_proxy;
