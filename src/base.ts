@@ -2,7 +2,8 @@ import Command, {flags} from '@oclif/command'
 import axios from "axios"
 import {BASE_API_URL, GLOBAL_CONF_PATH} from "./constants";
 import {get_all_services, isEmptyObject, read_config_file} from "./helper";
-import HttpsProxyAgent from "https-proxy-agent/dist/agent";
+import { getProxyHttpAgent } from 'proxy-http-agent';
+
 import * as fs from "fs";
 import got, {Options} from 'got'
 
@@ -36,9 +37,13 @@ export default abstract class extends Command {
     if (proxy) {
       this.log(`Using proxy server ${proxy}`);
       // @ts-ignore
-      const agent = new HttpsProxyAgent(proxy);
+      const agent = getProxyHttpAgent({
+        proxy: proxy,
+        rejectUnauthorized: false
+      });
       this.axiosConfig.httpsAgent = agent;
       this.axiosConfig.proxy = false;
+      // @ts-ignore
       gotConfig.agent = {https: agent}
 
     }
