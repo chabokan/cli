@@ -132,7 +132,7 @@ export default class Deploy extends Command {
     });
 
     try {
-      const response = await this.got.post(`ervices/${selected_service}/deploy/`, {body})
+      const response = await this.got.post(`services/${selected_service}/deploy/`, {body})
         .on('uploadProgress', progress => {
           bar.tick(progress.transferred - bar.curr)
         }).json<{ success: string }>();
