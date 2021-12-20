@@ -55,7 +55,7 @@ export default class Deploy extends Command {
 
 
     let archive_path = await this.prepare_archive(project_path);
-    let upload_response: any = await this.upload(archive_path, selected_service);
+    let upload_response: any = await this.upload(archive_path, selected_service, cli);
     if (upload_response.success) {
       cli.log(chalk.green(upload_response.message));
     } else {
@@ -110,7 +110,7 @@ export default class Deploy extends Command {
     return archivePath
   }
 
-  async upload(archive_path: any, selected_service: any) {
+  async upload(archive_path: any, selected_service: any, cli: any) {
     let upload_response = {
       success: false,
       message: "some problem"
@@ -132,17 +132,24 @@ export default class Deploy extends Command {
     });
 
     try {
-      const response = await this.got.post(`services/${selected_service}/deploy/`, {body})
+      const response = await this.got.post(`ervices/${selected_service}/deploy/`, {body})
         .on('uploadProgress', progress => {
           bar.tick(progress.transferred - bar.curr)
         }).json<{ success: string }>();
       if (response.success) {
         upload_response.success = true;
         upload_response.message = "Deployment finished successfully."
+      } else {
+        if (process.env.CHABOK_DEBUG == "true") {
+          cli.log(response);
+        }
       }
       return upload_response
 
     } catch (error) {
+      if (process.env.CHABOK_DEBUG == "true") {
+        cli.log(error);
+      }
       return upload_response
     } finally {
       // cleanup
