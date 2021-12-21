@@ -35,10 +35,11 @@ export default abstract class extends Command {
       rejectUnauthorized: false
     });
     // @ts-ignore
-    const gotConfig: Options = {https: main_agent};
+    const gotConfig: Options = {};
     this.axiosConfig.httpsAgent = main_agent;
     this.axiosConfig.baseURL = BASE_API_URL;
     gotConfig.prefixUrl = this.axiosConfig.baseURL;
+    gotConfig.agent = {https: main_agent};
     const proxy = process.env.http_proxy || process.env.https_proxy;
     if (proxy) {
       this.log(`Using proxy server ${proxy}`);
