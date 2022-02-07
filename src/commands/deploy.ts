@@ -65,15 +65,21 @@ export default class Deploy extends Command {
 
   async prepare_archive(project_path: any) {
     const defaultIgnores: string[] = [
+      '.npm',
       '.git',
       '.idea',
+      '.DS_Store',
       '.vscode',
+      '__pycache__',
       '.next',
-      '.dockerignore',
+      '.nuxt',
       '*.*~',
       'liara.json',
       'node_modules',
       'bower_components',
+      'venv',
+      'vendor',
+      '*.log',
     ];
     const ignoreCache: any = {};
     const ignoreInstance = ignore({ignorecase: false});
@@ -120,7 +126,7 @@ export default class Deploy extends Command {
     body.append('file', fs.createReadStream(archive_path));
     const {size: sourceSize} = fs.statSync(archive_path);
     if (sourceSize > MAX_SOURCE_SIZE) {
-      upload_response.message = "Source is too large. (max: 500MB)";
+      upload_response.message = "Source is too large. (max: 200MB)";
       return upload_response
     }
     const bar = new ProgressBar('Uploading [:bar] :percent :etas', {
