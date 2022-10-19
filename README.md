@@ -18,7 +18,7 @@ $ npm install -g @chabokan.net/cli
 $ chabok COMMAND
 running command...
 $ chabok (--version|-v)
-@chabokan.net/cli/0.8.0 darwin-x64 node-v14.5.0
+@chabokan.net/cli/0.8.1 darwin-x64 node-v14.5.0
 $ chabok --help [COMMAND]
 USAGE
   $ chabok COMMAND
@@ -134,7 +134,7 @@ DESCRIPTION
   this command help you build and deploy your service to chabokan in easy way.
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.8.0/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.8.1/src/commands/deploy.ts)_
 
 ## `chabok help [COMMAND]`
 
@@ -174,7 +174,7 @@ DESCRIPTION
   login to hub.chabokan.net account
 ```
 
-_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.8.0/src/commands/login.ts)_
+_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.8.1/src/commands/login.ts)_
 
 ## `chabok service list`
 
