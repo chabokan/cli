@@ -1,19 +1,20 @@
 import {Command, Flags} from '@oclif/core'
 import axios from 'axios'
 import {BASE_API_URL, GLOBAL_CONF_PATH} from './constants'
-import {get_all_services, isEmptyObject, read_config_file} from './helper'
+import {checkUpdate, get_all_services, isEmptyObject, read_config_file} from './helper'
 import HttpsProxyAgent from 'https-proxy-agent';
 
 import * as fs from 'fs'
 import got, {Options} from 'got'
 import * as https from 'https'
 
+
 export default abstract class extends Command {
   static flags = {
     help: Flags.help({char: 'h'}),
   };
 
-  axiosConfig:any = {
+  axiosConfig: any = {
     ...axios.defaults
   };
   got = got.extend();
@@ -31,6 +32,7 @@ export default abstract class extends Command {
   }
 
   async init_run() {
+    await checkUpdate(this.config.version)
     const main_agent = new https.Agent({
       rejectUnauthorized: false
     });

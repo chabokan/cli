@@ -18,7 +18,7 @@ $ npm install -g @chabokan.net/cli
 $ chabok COMMAND
 running command...
 $ chabok (--version|-v)
-@chabokan.net/cli/0.8.0 darwin-x64 node-v14.5.0
+@chabokan.net/cli/0.8.0 darwin-x64 node-v14.17.5
 $ chabok --help [COMMAND]
 USAGE
   $ chabok COMMAND

@@ -3,6 +3,11 @@ import {GLOBAL_CONF_PATH} from "./constants";
 import axios from "axios";
 import {dirname, join, relative} from "path";
 import ignore, {Ignore} from 'ignore';
+import boxen from 'boxen';
+import chalk from 'chalk';
+import semver from 'semver';
+import pkgJson from 'package-json';
+import semverDiff from 'semver-diff';
 
 export function isObject(obj: any) {
   return obj != null && obj.constructor.name === "Object"
@@ -84,15 +89,46 @@ export const loadIgnoreFile = (ignoreInstance: Ignore, ignoreFilePath: string, p
 }
 
 export function addIgnorePatterns(ignoreInstance: Ignore, projectPath: string, dir: string) {
-  const liaraignorePath = join(projectPath, dir, '.chabokignore')
+  const chabokignorePath = join(projectPath, dir, '.chabokignore')
   const dockerignorePath = join(projectPath, dir, '.dockerignore')
   const gitignorePath = join(projectPath, dir, '.gitignore')
 
-  if (fs.existsSync(liaraignorePath)) {
-    loadIgnoreFile(ignoreInstance, liaraignorePath, projectPath)
+  if (fs.existsSync(chabokignorePath)) {
+    loadIgnoreFile(ignoreInstance, chabokignorePath, projectPath)
   } else if (fs.existsSync(dockerignorePath)) {
     loadIgnoreFile(ignoreInstance, dockerignorePath, projectPath)
   } else if (fs.existsSync(gitignorePath)) {
     loadIgnoreFile(ignoreInstance, gitignorePath, projectPath)
   }
 }
+
+export const checkUpdate = async (version: any) => {
+  const name = "@chabokan.net/cli"
+  const {version: latestVersion} = await pkgJson(name);
+
+  // check if local package version is less than the remote version
+  const updateAvailable = semver.lt(version, latestVersion as string);
+
+  if (updateAvailable) {
+    let updateType = '';
+
+    // check the type of version difference which is usually patch, minor, major etc.
+    let verDiff = semverDiff(version, latestVersion as string);
+
+    if (verDiff) {
+      updateType = verDiff;
+    }
+
+    const msg = {
+      updateAvailable: `${updateType} update available ${chalk.dim(version)} → ${chalk.green(latestVersion)}`,
+      runUpdate: `Run ${chalk.cyan(`npm i -g ${name}`)} to update`,
+    };
+
+    // notify the user about the available udpate
+    console.log(boxen(`${msg.updateAvailable}\n${msg.runUpdate}`, {
+      margin: 1,
+      padding: 1,
+      align: 'center',
+    }));
+  }
+};

@@ -11,6 +11,7 @@ import * as path from "path"
 import * as os from "os"
 import fs from 'fs-extra'
 import tar from 'tar'
+import {GLOBAL_CONF_PATH} from "../constants";
 
 const MAX_SOURCE_SIZE = 100 * 1024 * 1024; // 100 MB
 
@@ -26,16 +27,25 @@ export default class Deploy extends Command {
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(Deploy);
     const cli = this;
-    this.init_run();
+    await this.init_run();
     const config_json = await this.read_config();
     let selected_service = flags.service;
     let project_path = flags.path ? flags.path : process.cwd();
+    let chabok_file = {service: ""}
+    try {
+      chabok_file = JSON.parse(fs.readFileSync(path.join(project_path, 'chabok.json')).toString('utf-8')) || {};
+      cli.log("Reading Config from chabok.json ...");
+    } catch {
+    }
 
+    if (chabok_file.service) {
+      selected_service = chabok_file.service
+    }
     if (isEmptyObject(config_json.users)) {
       cli.log(`${chalk.red('[Error]')} first you should login!`);
       return;
     }
-    if (!flags.service) {
+    if (!selected_service) {
       let all_services: any = await this.get_services({"has_deploy": "true", "status": "on"});
       if (all_services.length > 0) {
         let {service} = await inquirer.prompt({
@@ -53,7 +63,7 @@ export default class Deploy extends Command {
 
 
     let archive_path = await this.prepare_archive(project_path);
-    let upload_response: any = await this.upload(archive_path, selected_service, cli);
+    let upload_response: any = await this.upload(archive_path, selected_service, cli, chabok_file);
     if (upload_response.success) {
       cli.log(chalk.green(upload_response.message));
     } else {
@@ -114,7 +124,7 @@ export default class Deploy extends Command {
     return archivePath
   }
 
-  async upload(archive_path: any, selected_service: any, cli: any) {
+  async upload(archive_path: any, selected_service: any, cli: any, chabok_file: any) {
     let upload_response = {
       success: false,
       message: "some problem"
@@ -122,6 +132,7 @@ export default class Deploy extends Command {
     const body = new FormData();
     // @ts-ignore
     body.append('file', fs.createReadStream(archive_path));
+    body.append('options', JSON.stringify(chabok_file));
     const {size: sourceSize} = fs.statSync(archive_path);
     if (sourceSize > MAX_SOURCE_SIZE) {
       upload_response.message = "Source is too large. (max: 100MB)";
