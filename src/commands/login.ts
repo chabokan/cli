@@ -15,8 +15,6 @@ export default class Login extends Command {
     token: Flags.string({char: 't', description: 'login with api token'}),
   };
 
-  static args = [{name: 'file'}]
-
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(Login);
     const cli = this;
