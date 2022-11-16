@@ -82,11 +82,10 @@ export default class Deploy extends Command {
       '.next',
       '.nuxt',
       '*.*~',
-      'liara.json',
       'node_modules',
       'bower_components',
       'venv',
-      'vendor',
+      '/vendor',
       '*.log',
     ];
     const ignoreCache: any = {};

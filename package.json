@@ -1,6 +1,6 @@
 {
   "name": "@chabokan.net/cli",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "Chabokan Cli for PaaS Services",
   "author": "Mohammad Abdi",
   "bin": {
