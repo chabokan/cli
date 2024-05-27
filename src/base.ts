@@ -1,7 +1,7 @@
 import {Command, Flags} from '@oclif/core'
 import axios from 'axios'
-import {BASE_API_URL, GLOBAL_CONF_PATH} from './constants'
-import {checkUpdate, get_all_services, isEmptyObject, read_config_file} from './helper'
+import {BASE_API_URL, GLOBAL_CONF_PATH} from './constants.js'
+import {checkUpdate, get_all_services, isEmptyObject, read_config_file} from './helper.js'
 import HttpsProxyAgent from 'https-proxy-agent';
 
 import * as fs from 'fs'

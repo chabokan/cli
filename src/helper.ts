@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import {GLOBAL_CONF_PATH} from "./constants";
+import {GLOBAL_CONF_PATH} from "./constants.js";
 import axios from "axios";
 import {dirname, join, relative} from "path";
 import ignore, {Ignore} from 'ignore';

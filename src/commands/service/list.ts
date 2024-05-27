@@ -1,15 +1,15 @@
-import Command from "../../base"
-import {CliUx} from '@oclif/core';
+import Command from "../../base.js";
+import { ux } from "@oclif/core";
 
 export default class ServiceList extends Command {
-  static description = 'show account services list';
+  static description = "show account services list";
 
   static flags = {
     ...Command.flags,
   };
 
   public async run(): Promise<void> {
-    const {args, flags} = await this.parse(ServiceList)
+    const { args, flags } = await this.parse(ServiceList);
     const cli = this;
     await this.init_run();
     const config_json = await this.read_config();
@@ -23,7 +23,7 @@ export default class ServiceList extends Command {
           Name: service.name,
         };
       });
-      CliUx.ux.table(
+      ux.table(
         services_data,
         {
           Name: {},

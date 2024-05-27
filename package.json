@@ -1,67 +1,67 @@
 {
-  "name": "@chabokan.net/cli",
-  "version": "0.8.4",
+ "name": "@chabokan.net/cli",
+  "version": "0.8.8",
   "description": "Chabokan Cli for PaaS Services",
   "author": "Mohammad Abdi",
   "bin": {
-    "chabok": "./bin/run"
+    "chabok": "./bin/run.js"
   },
-  "homepage": "https://github.com/chabokan/cli",
-  "license": "MIT",
-  "main": "lib/index.js",
-  "repository": "chabokan/cli",
-  "files": [
-    "/bin",
-    "/lib",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
-  ],
   "dependencies": {
-    "@oclif/core": "^1.18.0",
-    "@oclif/plugin-autocomplete": "^1.3.3",
-    "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.1.2",
-    "@oclif/plugin-version": "^1.1.3",
-    "axios": "^1.1.3",
-    "boxen": "^5.1.2",
-    "chalk": "^4.1.2",
+    "@oclif/core": "^3",
+    "@oclif/plugin-help": "^6",
+    "@oclif/plugin-plugins": "^5",
+    "@oclif/plugin-autocomplete": "^3.0.18",
+    "@oclif/plugin-version": "^2.1.2",
+    "axios": "^1.7.2",
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
     "form-data": "^4.0.0",
-    "fs-extra": "^9.1.0",
-    "globby": "^11.1.0",
-    "got": "^11.8.2",
-    "https-proxy-agent": "^5.0.1",
-    "ignore": "^5.1.0",
-    "inquirer": "^8.2.4",
-    "package-json": "^6.5.0",
+    "fs-extra": "^11.2.0",
+    "globby": "^14.0.1",
+    "got": "^13.0.0",
+    "https-proxy-agent": "^7.0.4",
+    "ignore": "^5.3.1",
+    "inquirer": "^9.2.22",
+    "package-json": "^10.0.0",
     "progress": "^2.0.3",
-    "semver": "^7.3.8",
-    "semver-diff": "^3.1.1",
-    "tar": "^6.1.11"
+    "semver": "^7.6.2",
+    "semver-diff": "^4.0.0",
+    "tar": "^7.1.0"
   },
   "devDependencies": {
-    "@oclif/test": "^2.2.3",
+    "@oclif/prettier-config": "^0.2.1",
+    "@oclif/test": "^4",
     "@types/chai": "^4",
-    "@types/fs-extra": "^5.0.5",
-    "@types/inquirer": "^9.0.2",
-    "@types/mocha": "^9.0.0",
-    "@types/node": "^16.11.65",
-    "@types/progress": "^2.0.3",
-    "@types/semver": "^7.3.12",
-    "@types/tar": "^6.1.3",
+    "@types/mocha": "^10",
+    "@types/node": "^18",
     "chai": "^4",
-    "eslint": "^7.32.0",
-    "eslint-config-oclif": "^4",
-    "eslint-config-oclif-typescript": "^1.0.3",
-    "mocha": "^9",
-    "oclif": "^3",
+    "eslint": "^8",
+    "eslint-config-oclif": "^5",
+    "eslint-config-oclif-typescript": "^3",
+    "eslint-config-prettier": "^9",
+    "mocha": "^10",
+    "oclif": "^4",
     "shx": "^0.3.3",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.3.1",
-    "typescript": "^4.8.4"
+    "ts-node": "^10",
+    "typescript": "^5",
+    "@types/fs-extra": "^11.0.4",
+    "@types/inquirer": "^9.0.7",
+    "@types/progress": "^2.0.7",
+    "@types/semver": "^7.5.8",
+    "@types/tar": "^6.1.13"
   },
+  "files": [
+    "/bin",
+    "/dist",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/chabokan/cli",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "type": "module",
   "oclif": {
     "bin": "chabok",
-    "commands": "./lib/commands",
+    "commands": "./dist/commands",
     "additionalHelpFlags": [
       "-h"
     ],
@@ -70,6 +70,7 @@
     ],
     "plugins": [
       "@oclif/plugin-help",
+      "@oclif/plugin-plugins",
       "@oclif/plugin-autocomplete",
       "@oclif/plugin-version"
     ],
@@ -83,17 +84,18 @@
       }
     }
   },
+  "repository": "chabokan/cli",
   "scripts": {
-    "build": "shx rm -rf lib && rm -rf tsconfig.tsbuildinfo && tsc -b",
-    "lint": "eslint . --ext .ts --config .eslintrc",
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts",
     "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "yarn lint",
-    "prepack": "yarn build && oclif manifest && oclif readme",
+    "posttest": "npm run lint",
+    "prepack": "oclif manifest && oclif readme",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
-  "engines": {
-    "node": ">=14.0.0"
+   "engines": {
+    "node": ">=18.18.0"
   },
   "bugs": "https://github.com/chabokan/cli/issues",
   "keywords": [
@@ -104,5 +106,5 @@
     "cloud",
     "docker"
   ],
-  "types": "lib/index.d.ts"
+  "types": "dist/index.d.ts"
 }

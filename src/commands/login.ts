@@ -2,8 +2,8 @@ import {Flags} from '@oclif/core'
 import inquirer from 'inquirer';
 import axios from "axios";
 import chalk from "chalk";
-import {isObject} from "../helper";
-import Command from "../base"
+import {isObject} from "../helper.js";
+import Command from "../base.js"
 
 export default class Login extends Command {
   static description = 'login to hub.chabokan.net account';
@@ -82,6 +82,10 @@ export default class Login extends Command {
         await this.write_config(config_json);
         cli.log(`${chalk.green('[Success]')} you are logged in successfully.`)
       } catch (e) {
+        if (process.env.CHABOK_DEBUG == "true") {
+          // @ts-ignore
+          cli.log(e);
+        }
         cli.log(`${chalk.red('[Error]')} your token is wrong!`)
       }
     }

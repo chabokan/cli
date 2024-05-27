@@ -1,6 +1,6 @@
 import {Flags} from '@oclif/core'
-import Command from "../../base"
-import {isEmptyObject} from "../../helper";
+import Command from "../../base.js"
+import {isEmptyObject} from "../../helper.js";
 import chalk from "chalk";
 import inquirer from 'inquirer';
 import axios from "axios";
@@ -19,7 +19,7 @@ export default class ServiceResize extends Command {
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(ServiceResize);
     const cli = this;
-    this.init_run();
+    await this.init_run();
     const config_json = await this.read_config();
     let selected_service = flags.service;
     let selected_ram: any = flags.ram;
