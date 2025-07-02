@@ -1,110 +1,111 @@
 {
  "name": "@chabokan.net/cli",
-  "version": "0.8.8",
-  "description": "Chabokan Cli for PaaS Services",
-  "author": "Mohammad Abdi",
-  "bin": {
-    "chabok": "./bin/run.js"
-  },
-  "dependencies": {
-    "@oclif/core": "^3",
-    "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^5",
-    "@oclif/plugin-autocomplete": "^3.0.18",
-    "@oclif/plugin-version": "^2.1.2",
-    "axios": "^1.7.2",
-    "boxen": "^7.1.1",
-    "chalk": "^5.3.0",
-    "form-data": "^4.0.0",
-    "fs-extra": "^11.2.0",
-    "globby": "^14.0.1",
-    "got": "^13.0.0",
-    "https-proxy-agent": "^7.0.4",
-    "ignore": "^5.3.1",
-    "inquirer": "^9.2.22",
-    "package-json": "^10.0.0",
-    "progress": "^2.0.3",
-    "semver": "^7.6.2",
-    "semver-diff": "^4.0.0",
-    "tar": "^7.1.0"
-  },
-  "devDependencies": {
-    "@oclif/prettier-config": "^0.2.1",
-    "@oclif/test": "^4",
-    "@types/chai": "^4",
-    "@types/mocha": "^10",
-    "@types/node": "^18",
-    "chai": "^4",
-    "eslint": "^8",
-    "eslint-config-oclif": "^5",
-    "eslint-config-oclif-typescript": "^3",
-    "eslint-config-prettier": "^9",
-    "mocha": "^10",
-    "oclif": "^4",
-    "shx": "^0.3.3",
-    "ts-node": "^10",
-    "typescript": "^5",
-    "@types/fs-extra": "^11.0.4",
-    "@types/inquirer": "^9.0.7",
-    "@types/progress": "^2.0.7",
-    "@types/semver": "^7.5.8",
-    "@types/tar": "^6.1.13"
-  },
-  "files": [
-    "/bin",
-    "/dist",
-    "/oclif.manifest.json"
+ "version": "0.8.10",
+ "description": "Chabokan Cli for PaaS Services",
+ "author": "Mohammad Abdi",
+ "bin": {
+  "chabok": "./bin/run.js"
+ },
+ "dependencies": {
+  "@oclif/core": "3.27.0",
+  "@oclif/plugin-autocomplete": "^3.2.31",
+  "@oclif/plugin-help": "^6",
+  "@oclif/plugin-plugins": "^5",
+  "@oclif/plugin-version": "^2.2.30",
+  "axios": "^1.10.0",
+  "boxen": "^8.0.1",
+  "chalk": "^5.4.1",
+  "form-data": "^4.0.3",
+  "fs-extra": "^11.3.0",
+  "globby": "^14.1.0",
+  "got": "^14.4.7",
+  "https-proxy-agent": "^7.0.6",
+  "ignore": "5.3.1",
+  "inquirer": "^12.7.0",
+  "package-json": "^10.0.1",
+  "progress": "^2.0.3",
+  "semver": "^7.7.2",
+  "semver-diff": "^4.0.0",
+  "tar": "^7.4.3"
+ },
+ "devDependencies": {
+  "@oclif/prettier-config": "^0.2.1",
+  "@oclif/test": "^4",
+  "@types/chai": "^5",
+  "@types/fs-extra": "^11.0.4",
+  "@types/inquirer": "^9.0.8",
+  "@types/mocha": "^10",
+  "@types/node": "^24",
+  "@types/progress": "^2.0.7",
+  "@types/semver": "^7.7.0",
+  "@types/tar": "^6.1.13",
+  "chai": "^5",
+  "eslint": "^9",
+  "eslint-config-oclif": "^6",
+  "eslint-config-oclif-typescript": "^3",
+  "eslint-config-prettier": "^10",
+  "mocha": "^11",
+  "oclif": "^4",
+  "shx": "^0.4.0",
+  "ts-node": "^10",
+  "typescript": "^5"
+ },
+ "files": [
+  "/bin",
+  "/dist",
+  "/oclif.manifest.json"
+ ],
+ "homepage": "https://github.com/chabokan/cli",
+ "license": "MIT",
+ "main": "dist/index.js",
+ "type": "module",
+ "oclif": {
+  "bin": "chabok",
+  "dirname": "cli",
+  "commands": "./dist/commands",
+  "additionalHelpFlags": [
+   "-h"
   ],
-  "homepage": "https://github.com/chabokan/cli",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "type": "module",
-  "oclif": {
-    "bin": "chabok",
-    "commands": "./dist/commands",
-    "additionalHelpFlags": [
-      "-h"
-    ],
-    "additionalVersionFlags": [
-      "-v"
-    ],
-    "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins",
-      "@oclif/plugin-autocomplete",
-      "@oclif/plugin-version"
-    ],
-    "topicSeparator": " ",
-    "topics": {
-      "account": {
-        "description": "display commands for working with accounts"
-      },
-      "service": {
-        "description": "display commands for working with services"
-      }
-    }
-  },
-  "repository": "chabokan/cli",
-  "scripts": {
-    "build": "shx rm -rf dist && tsc -b",
-    "lint": "eslint . --ext .ts",
-    "postpack": "shx rm -f oclif.manifest.json",
-    "posttest": "npm run lint",
-    "prepack": "oclif manifest && oclif readme",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif readme && git add README.md"
-  },
-   "engines": {
-    "node": ">=18.18.0"
-  },
-  "bugs": "https://github.com/chabokan/cli/issues",
-  "keywords": [
-    "chabokan",
-    "chabok cli",
-    "deploy",
-    "deployment",
-    "cloud",
-    "docker"
+  "additionalVersionFlags": [
+   "-v"
   ],
-  "types": "dist/index.d.ts"
+  "plugins": [
+   "@oclif/plugin-help",
+   "@oclif/plugin-plugins",
+   "@oclif/plugin-autocomplete",
+   "@oclif/plugin-version"
+  ],
+  "topicSeparator": " ",
+  "topics": {
+   "account": {
+    "description": "display commands for working with accounts"
+   },
+   "service": {
+    "description": "display commands for working with services"
+   }
+  }
+ },
+ "repository": "chabokan/cli",
+ "scripts": {
+  "build": "shx rm -rf dist && tsc -b",
+  "lint": "eslint . --ext .ts",
+  "postpack": "shx rm -f oclif.manifest.json",
+  "posttest": "npm run lint",
+  "prepack": "oclif manifest && oclif readme",
+  "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+  "version": "oclif readme && git add README.md"
+ },
+ "engines": {
+  "node": ">=18.18.0"
+ },
+ "bugs": "https://github.com/chabokan/cli/issues",
+ "keywords": [
+  "chabokan",
+  "chabok cli",
+  "deploy",
+  "deployment",
+  "cloud",
+  "docker"
+ ],
+ "types": "dist/index.d.ts"
 }

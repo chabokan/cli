@@ -20,7 +20,7 @@ $ npm install -g @chabokan.net/cli
 $ chabok COMMAND
 running command...
 $ chabok (--version|-v)
-@chabokan.net/cli/0.8.8 darwin-arm64 node-v20.13.1
+@chabokan.net/cli/0.8.9 darwin-arm64 node-v20.13.1
 $ chabok --help [COMMAND]
 USAGE
   $ chabok COMMAND
@@ -29,8 +29,13 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`chabok account list`](#chabok-account-list)
+* [`chabok account remove`](#chabok-account-remove)
+* [`chabok account use`](#chabok-account-use)
 * [`chabok autocomplete [SHELL]`](#chabok-autocomplete-shell)
+* [`chabok deploy`](#chabok-deploy)
 * [`chabok help [COMMAND]`](#chabok-help-command)
+* [`chabok login`](#chabok-login)
 * [`chabok plugins`](#chabok-plugins)
 * [`chabok plugins add PLUGIN`](#chabok-plugins-add-plugin)
 * [`chabok plugins:inspect PLUGIN...`](#chabok-pluginsinspect-plugin)
@@ -41,7 +46,65 @@ USAGE
 * [`chabok plugins uninstall [PLUGIN]`](#chabok-plugins-uninstall-plugin)
 * [`chabok plugins unlink [PLUGIN]`](#chabok-plugins-unlink-plugin)
 * [`chabok plugins update`](#chabok-plugins-update)
+* [`chabok service list`](#chabok-service-list)
+* [`chabok service logs`](#chabok-service-logs)
+* [`chabok service resize`](#chabok-service-resize)
+* [`chabok service restart`](#chabok-service-restart)
+* [`chabok service start`](#chabok-service-start)
+* [`chabok service stop`](#chabok-service-stop)
 * [`chabok version`](#chabok-version)
+
+## `chabok account list`
+
+show accounts list
+
+```
+USAGE
+  $ chabok account list [-h]
+
+FLAGS
+  -h, --help  Show CLI help.
+
+DESCRIPTION
+  show accounts list
+```
+
+_See code: [src/commands/account/list.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/account/list.ts)_
+
+## `chabok account remove`
+
+remove account from list
+
+```
+USAGE
+  $ chabok account remove [-h]
+
+FLAGS
+  -h, --help  Show CLI help.
+
+DESCRIPTION
+  remove account from list
+```
+
+_See code: [src/commands/account/remove.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/account/remove.ts)_
+
+## `chabok account use`
+
+switch your default user between logged in users
+
+```
+USAGE
+  $ chabok account use [-h] [-u <value>]
+
+FLAGS
+  -h, --help          Show CLI help.
+  -u, --user=<value>  default user
+
+DESCRIPTION
+  switch your default user between logged in users
+```
+
+_See code: [src/commands/account/use.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/account/use.ts)_
 
 ## `chabok autocomplete [SHELL]`
 
@@ -74,6 +137,25 @@ EXAMPLES
 
 _See code: [@oclif/plugin-autocomplete](https://github.com/oclif/plugin-autocomplete/blob/v3.0.18/src/commands/autocomplete/index.ts)_
 
+## `chabok deploy`
+
+this command help you build and deploy your service to chabokan in easy way.
+
+```
+USAGE
+  $ chabok deploy [-h] [-p <value>] [-s <value>]
+
+FLAGS
+  -h, --help             Show CLI help.
+  -p, --path=<value>     service path in your computer
+  -s, --service=<value>  service name
+
+DESCRIPTION
+  this command help you build and deploy your service to chabokan in easy way.
+```
+
+_See code: [src/commands/deploy.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/deploy.ts)_
+
 ## `chabok help [COMMAND]`
 
 Display help for chabok.
@@ -93,6 +175,26 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v6.0.22/src/commands/help.ts)_
+
+## `chabok login`
+
+login to hub.chabokan.net account
+
+```
+USAGE
+  $ chabok login [-h] [-u <value>] [-p <value>] [-t <value>]
+
+FLAGS
+  -h, --help              Show CLI help.
+  -p, --password=<value>  your password
+  -t, --token=<value>     login with api token
+  -u, --username=<value>  your username
+
+DESCRIPTION
+  login to hub.chabokan.net account
+```
+
+_See code: [src/commands/login.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/login.ts)_
 
 ## `chabok plugins`
 
@@ -140,7 +242,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Installs a plugin into chabok.
 
-  Uses bundled npm executable to install plugins into /Users/mohammad/.local/share/@chabokan.net/cli
+  Uses bundled npm executable to install plugins into /Users/mohammad/.local/share/cli
 
   Installation of a user-installed plugin will override a core plugin.
 
@@ -214,7 +316,7 @@ GLOBAL FLAGS
 DESCRIPTION
   Installs a plugin into chabok.
 
-  Uses bundled npm executable to install plugins into /Users/mohammad/.local/share/@chabokan.net/cli
+  Uses bundled npm executable to install plugins into /Users/mohammad/.local/share/cli
 
   Installation of a user-installed plugin will override a core plugin.
 
@@ -382,6 +484,116 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v5.1.3/src/commands/plugins/update.ts)_
+
+## `chabok service list`
+
+show account services list
+
+```
+USAGE
+  $ chabok service list [-h]
+
+FLAGS
+  -h, --help  Show CLI help.
+
+DESCRIPTION
+  show account services list
+```
+
+_See code: [src/commands/service/list.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/service/list.ts)_
+
+## `chabok service logs`
+
+read latest logs from service
+
+```
+USAGE
+  $ chabok service logs [-h] [-s <value>]
+
+FLAGS
+  -h, --help             Show CLI help.
+  -s, --service=<value>  service name
+
+DESCRIPTION
+  read latest logs from service
+```
+
+_See code: [src/commands/service/logs.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/service/logs.ts)_
+
+## `chabok service resize`
+
+resize a service
+
+```
+USAGE
+  $ chabok service resize [-h] [-s <value>] [-r <value>] [-c <value>] [-d <value>]
+
+FLAGS
+  -c, --cpu=<value>      CPU
+  -d, --disk=<value>     DISK
+  -h, --help             Show CLI help.
+  -r, --ram=<value>      RAM
+  -s, --service=<value>  service name
+
+DESCRIPTION
+  resize a service
+```
+
+_See code: [src/commands/service/resize.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/service/resize.ts)_
+
+## `chabok service restart`
+
+restart a service
+
+```
+USAGE
+  $ chabok service restart [-h] [-s <value>]
+
+FLAGS
+  -h, --help             Show CLI help.
+  -s, --service=<value>  service name
+
+DESCRIPTION
+  restart a service
+```
+
+_See code: [src/commands/service/restart.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/service/restart.ts)_
+
+## `chabok service start`
+
+start a service
+
+```
+USAGE
+  $ chabok service start [-h] [-s <value>]
+
+FLAGS
+  -h, --help             Show CLI help.
+  -s, --service=<value>  service name
+
+DESCRIPTION
+  start a service
+```
+
+_See code: [src/commands/service/start.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/service/start.ts)_
+
+## `chabok service stop`
+
+stop a service
+
+```
+USAGE
+  $ chabok service stop [-h] [-s <value>]
+
+FLAGS
+  -h, --help             Show CLI help.
+  -s, --service=<value>  service name
+
+DESCRIPTION
+  stop a service
+```
+
+_See code: [src/commands/service/stop.ts](https://github.com/chabokan/cli/blob/v0.8.9/src/commands/service/stop.ts)_
 
 ## `chabok version`
 
